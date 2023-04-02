@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Elseco</title>
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+
+    <style>
+        .add-post{
+            width: 80%;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 1px 1px 3px 3px rgba(15, 15, 15, 0.671);
+            background-color: #3E4042;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .edit-post form div{
+            display: flex;
+            width: 100%;
+            padding-right: 10px;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .edit-post form input,.edit-post form textarea{
+            width: 80%;
+            outline: none;
+            border: 0;
+            padding: 10px;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .edit-post form input:focus,.edit-post form textarea:focus{
+            box-shadow: 0px 1px 3px 5px #00BFFF;
+        }
+
+        .edit-post form h3{
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        .add-btn{
+            width: 80%;
+            background-color: orange;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.5em;
+            color: #fff;
+            outline: none;
+            border: 0;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .donee{
+            position: absolute;
+            top: 8%;
+            width: 83%;
+        }
+
+        @media (max-width:1023px) {
+            .edit-post form,.add-post,.add-post a{
+                width: 90%;
+            }
+            .edit-post form div{
+                padding-right: 0;
+            }
+            .edit-post form input,.edit-post form textarea{
+                margin-right: 5px;
+            }
+            .add-btn{
+                width: 90%;
+            }
+            .donee{
+                width: 100%;
+                top: 10%;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+    <header class="header1">
+        <a href="{% url 'index' %}"><h1 class="log"><img src="{% static 'image/icon.png' %}" width="45px"><span class="span1">Else<span class="span2">Co</span></h1></a>    
+
+        <!-- more -->
+
+        <nav class="more">
+
+            <input class="checkbox" type="checkbox" id="check">
+            <label for="check">
+            <i class="fa-solid fa-bars" id="btn" onclick="side_on()"></i>
+            <i class="fa-solid fa-times" id="cancel" onclick="side_of()"></i>
+    
+        </label>
+            <div class="sidebar" id="sidebar">
+                <header style="color: orange;font-size:2.6em">تعديل</header>
+                
+                <ul>
+                    <div>
+                        <h1><img src="{% static 'image/icon.png' %}" width="45px">
+                        <h1>Else<span>Co</span></h1></a>
+                    </div>
+                    <li><a href="{% url 'edithome' %}"><i class="fa-sharp fa-solid fa-house-chimney"></i>الرئيسية</a></li>
+                    <li><a href="{% url 'editposts' %}"><i class="fa-solid fa-pen-to-square"></i>المنشورات</a></li>
+                    <li><a href="{% url 'editstore' %}"><i class="fa-solid fa-store"></i>المتجر</a></li>
+                    <li><a href="{% url 'zapayn' %}"><i class="fa-solid fa-arrow-trend-up"></i>الزبائن</a></li>
+                    <li><a href="{% url 'active' %}"><i class="fa-solid fa-circle-dot"></i>حالة المحل</a></li>
+                    <li><a href="{% url 'editchecks' %}"><i class="fa-solid fa-splotch"></i>الحجوزات</a></li>
+                    <li><a href="{% url 'editoffers' %}"><i class="fa-solid fa-fire"></i>العروض</a></li>
+                    <li><a href="{% url 'editadmin' %}"><i class="fa-solid fa-user"></i>الأدمن</a></li>
+                </ul>
+            </div>
+        </nav>
+
+    </header>
+    
+
+    <!-- sections -->
+    <section class="section-home">
+        <div class="admin-side">
+            <h1>صفحة التعديلات</h1>
+            <ul>
+                <li><a href="{% url 'edithome' %}">الرئيسية<i class="fa-sharp fa-solid fa-house-chimney"></i></a></li>
+                <li><a onclick="post_btn()" href="{% url 'editposts' %}">المنشورات<i class="fa-solid fa-pen-to-square"></i></a></li>
+                <li><a onclick="store_btn()" href="{% url 'editstore' %}">المتجر<i class="fa-solid fa-store"></i></a></li>
+                <li><a onclick="zapayn_btn()" href="{% url 'zapayn' %}">الزبائن<i class="fa-solid fa-arrow-trend-up"></i></a></li>
+                <li><a onclick="zapayn_btn()" href="{% url 'active' %}">حالة المحل<i class="fa-solid fa-circle-dot"></i></a></li>
+                <li><a onclick="zapayn_btn()" href="{% url 'editchecks' %}">الحجوزات<i class="fa-solid fa-splotch"></i></a></li>
+                <li><a onclick="zapayn_btn()" href="{% url 'editoffers' %}">العروض<i class="fa-solid fa-fire"></i></a></li>
+                <li><a onclick="admin_btn()" href="{% url 'editadmin' %}">الأدمن<i class="fa-solid fa-user"></i></a></li>
+            </ul>
+        </div>
+        
+
+        <!-- admin-posts -->
+
+        <div class="edit-post" id="admin2">
+            <div class="add-post">
+                <h3 style="font-size: 1.5em;color:orange">إضافة عرض</h3>
+            </div>
+            <form method="POST" style="justify-content: center;flex-direction:column">
+                <!-- {% csrf_token %} -->
+                    <div>
+                        <input type="text" name="title" placeholder="العنوان" required>
+                        <h3>:العنوان</h3>
+                    </div>
+                    <div>
+                        <textarea name="offer" cols="30" rows="10" required placeholder="...اكتب العرض هنا"></textarea>
+                        <h3>:المحتوي</h3>
+                    </div>
+                    <div>
+                        <input type="text" name="range" placeholder="مدة سريان العرض" required>
+                        <h3>:المدة</h3>
+                    </div>
+                    <div>
+                        <input type="number" name="price" placeholder="سعر العرض" required>
+                        <h3>:السعر</h3>
+                    </div>
+                <button class="add-btn">إضافة</button>
+
+            </form>
+        </div>
+        {% if save == 'yes' %}
+                <div class="donee"><h3 style="color:#fff;background:green;padding:10px;width:100%;text-align:center">تم الحفظ بنجاح</h3></div>
+        {% elif save == 'no' %}
+            <div class="donee"><h3 style="color:#fff;background:red;padding:10px;width:100%;text-align:center">هذا العرض يوجد بالفعل</h3></div>
+        {% endif %}
+    </section>
+    
+
+    <!-- footer -->
+
+
+</body>
+</html>

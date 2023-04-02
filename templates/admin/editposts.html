@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Elseco</title>
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+
+    <style>
+        #h3-result{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .edit-post .posts{
+            display: block;
+            flex-wrap: nowrap;
+            width: 100vw;
+            margin-bottom: 200px;
+        }
+
+
+        .edit-post .user-post .remove{
+            padding: 7px;
+            margin-left: 20px;
+        }
+
+        .add-post{
+            width: 80%;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 1px 1px 3px 3px rgba(15, 15, 15, 0.671);
+            background-color: #3E4042;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .add-post a{
+            padding: 10px 20px;
+            width: 85%;
+            background-color: #1E90FF;
+            color: #fff;
+            border: 0;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        @media (max-width:1023px) {
+            .edit-post form,.add-post,.add-post a{
+                width: 90%;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+    <header class="header1">
+        <a href="{% url 'index' %}"><h1 class="log"><img src="{% static 'image/icon.png' %}" width="45px"><span class="span1">Else<span class="span2">Co</span></h1></a>    
+
+        <!-- more -->
+
+        <nav class="more">
+
+            <input class="checkbox" type="checkbox" id="check">
+            <label for="check">
+            <i class="fa-solid fa-bars" id="btn" onclick="side_on()"></i>
+            <i class="fa-solid fa-times" id="cancel" onclick="side_of()"></i>
+    
+        </label>
+            <div class="sidebar" id="sidebar">
+                <header style="color: orange;font-size:2.6em">تعديل</header>
+                <ul>
+                    <div>
+                        <h1><img src="{% static 'image/icon.png' %}" width="45px">
+                        <h1>Else<span>Co</span></h1></a>
+                    </div>
+                    <li><a href="{% url 'edithome' %}"><i class="fa-sharp fa-solid fa-house-chimney"></i>الرئيسية</a></li>
+                    <li><a href="{% url 'editposts' %}"><i class="fa-solid fa-pen-to-square"></i>المنشورات</a></li>
+                    <li><a href="{% url 'editstore' %}"><i class="fa-solid fa-store"></i>المتجر</a></li>
+                    <li><a href="{% url 'zapayn' %}"><i class="fa-solid fa-arrow-trend-up"></i>الزبائن</a></li>
+                    <li><a href="{% url 'active' %}"><i class="fa-solid fa-circle-dot"></i>حالة المحل</a></li>
+                    <li><a href="{% url 'editchecks' %}"><i class="fa-solid fa-splotch"></i>الحجوزات</a></li>
+                    <li><a href="{% url 'editoffers' %}"><i class="fa-solid fa-fire"></i>العروض</a></li>
+                    <li><a href="{% url 'editadmin' %}"><i class="fa-solid fa-user"></i>الأدمن</a></li>
+                </ul>
+            </div>
+        </nav>
+
+    </header>
+    
+
+    <!-- sections -->
+    <section class="section-home">
+        <div class="admin-side">
+            <h1>صفحة التعديلات</h1>
+            <ul>
+                <li><a href="{% url 'edithome' %}">الرئيسية<i class="fa-sharp fa-solid fa-house-chimney"></i></a></li>
+                <li><a onclick="post_btn()" href="{% url 'editposts' %}">المنشورات<i class="fa-solid fa-pen-to-square"></i></a></li>
+                <li><a onclick="store_btn()" href="{% url 'editstore' %}">المتجر<i class="fa-solid fa-store"></i></a></li>
+                <li><a onclick="zapayn_btn()" href="{% url 'zapayn' %}">الزبائن<i class="fa-solid fa-arrow-trend-up"></i></a></li>
+                <li><a onclick="zapayn_btn()" href="{% url 'active' %}">حالة المحل<i class="fa-solid fa-circle-dot"></i></a></li>
+                <li><a onclick="zapayn_btn()" href="{% url 'editchecks' %}">الحجوزات<i class="fa-solid fa-splotch"></i></a></li>
+                <li><a onclick="zapayn_btn()" href="{% url 'editoffers' %}">العروض<i class="fa-solid fa-fire"></i></a></li>
+                <li><a onclick="admin_btn()" href="{% url 'editadmin' %}">الأدمن<i class="fa-solid fa-user"></i></a></li>
+            </ul>
+        </div>
+        
+
+        <!-- admin-posts -->
+
+        <div class="edit-post" id="admin2">
+            <div class="add-post">
+                <a href="{% url 'addpostpage' %}">إضافة منشور</a>
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                <input id="search-in" type="search" class="search" name="search-post" placeholder="...ابحث عن منشور">
+                <!-- <input class="search-btn" type="submit" value="Search"> -->
+                <button onclick="search_btn()" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+            <hr style="margin:auto; width:60%; color:orange; margin-bottom:10px">
+            <div class="post-result">
+                <h3 id="h3-result"><i class="fa-solid fa-circle-chevron-down"></i>نتائج البحث عن(' {{search}} ')</h3>
+
+            <!-- posts -->
+            <div class="posts" id="admin3">
+
+                {% for i in post reversed %}
+                {% if i.post == search %}
+                    <div class="post-content">
+                        <div class="post-header">
+                            {% for x in admin %}
+                            <img src="{{x.image.url}}" width="50px" alt="admin-photo">
+                            <div class="post-header-content">
+                                    <h3 style="justify-content: left;text-align:left;">{{x.name|capfirst}}</h3>
+                            {% endfor %}
+                                <p>{{i.time}}</p>
+                            </div>
+                        </div>
+                        <div class="user-post">
+                            <h2>{{i.post}}</h2>
+                            <a href="/posteditpage/{{i.id}}" class="edit">تعديل</a>
+                            <a href="/deletepage/{{i.id}}" class="remove">حذف</a>
+                            <!-- <button class="remove">حذف</button> -->
+                        </div>
+                    </div>
+
+                {% else %}
+
+                    <div class="post-content">
+                        <div class="post-header">
+                            {% for x in admin %}
+                            <img src="{{x.image.url}}" width="50px" height="50px" alt="admin-photo">
+                            <div class="post-header-content">
+                                
+                                    <h3 style="justify-content: left;text-align:left;">{{x.name|capfirst}}</h3>
+                            {% endfor %}
+                                <p>{{i.time}}</p>
+                            </div>
+                        </div>
+                        <div class="user-post">
+                            <h2>{{i.post}}</h2>
+                            <a href="/posteditpage/{{i.id}}" class="edit"><i class="fa-solid fa-pen-to-square" style="color: #fff;"></i> تعديل</a>
+                            <a href="/deletepage/{{i.id}}" class="remove"><i class="fa-solid fa-trash" style="color: #fff;"></i> حذف</a>
+                            <!-- <button class="remove">حذف</button> -->
+                        </div>
+                    </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+
+
+    </section>
+    
+
+    <!-- footer -->
+
+
+</body>
+</html>

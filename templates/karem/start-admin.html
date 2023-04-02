@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>s_admin</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            text-decoration: none;
+            display: inline-block;
+            color: orange;
+        }
+        header{
+            width: 100vw;
+            display: flex;
+            background-color: black;
+        }
+        nav{
+            margin: auto;
+            width: 70%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            color: #fff;
+            font-size: 1.5em;
+        }
+
+        li{
+            margin-left: 40px;
+        }
+
+        section{
+            width: 100%;
+            min-height: 100vh;
+            background-color: gray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        section form{
+            width: 70%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .img{
+            padding: 10px;
+            border: 1px solid #fff;
+            font-size: 1.5em;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn{
+            padding: 10px;
+            font-size: 1.5em;
+            border: 0;
+            outline: 0;
+            background: green;
+            font-weight: bold;
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Karem-Admin</h1>
+            <ul style="list-style: none; display:flex">
+                <a href="{% url 's-admin' %}"><li>Admin</li></a>
+                <a href="{% url 's-zapayn' %}"><li>Zapayn</li></a>
+            </ul>
+        </nav>
+            
+    </header>
+    
+    {% block content %}
+    <section>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{pro.image}}
+            <input class="btn" type="submit" value="Save">
+        </form>
+    </section>
+    {% endblock content %}
+</body>
+</html>

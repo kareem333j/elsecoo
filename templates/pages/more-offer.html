@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />    
+    <title>Elseco | Offers</title>
+
+    <style>
+        .post-content{
+            margin-top: 0;
+        }
+        .offers{
+            width: 100%;
+            min-height: 100vh;
+            background-color: #18191A;
+            padding-top: 7%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        .offers-header{
+            width: 70%;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 1px 1px 3px 3px rgba(15, 15, 15, 0.671);
+            background-color: #3E4042;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        @media (max-width:1023px) {
+            .offers{
+                padding-top: 25%;
+            }
+            .offers-header{
+                width: 90%;
+            }
+        }
+    /* settings */
+
+    .btn-setting{
+        margin-left: 50px;
+        background-color: #3E4042;
+        border: 0;
+        cursor: pointer;
+        outline: none;
+    }
+    .btn-setting i{
+        font-size: 1.5em;
+        color: #fff;
+    }
+    
+    .btn-setting i:hover{
+        transform: rotate(90deg);
+        color: orange;
+    }
+    
+    .off{
+        display: none;
+    }
+    
+    .div-setting{
+        position: absolute;
+        top: 72px;
+        right: 100px;
+        width: 200px;
+        min-height: 50px;
+        background-color: #3E4042;
+        box-shadow: 1px 1px 3px 3px #18191A;
+        border-radius: 0 0 10px 10px;
+    }
+    
+    .div-setting ul{
+        display: flex;
+        width: 200px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        list-style: none;
+    }
+    
+    .div-setting ul li{
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .div-setting ul li a{
+        width: 100%;
+        border-bottom: 0.5px solid rgb(36, 35, 35);
+        text-align: end;
+        color: #fff;
+        font-size: 1.3em;
+        font-weight: bold;
+        padding: 8px;
+        transition: 0.7s;
+    }
+
+    
+    
+    .div-setting ul li a:hover{
+        padding-right: 20px;
+        background-color: orange;
+    }
+    
+    .div-setting ul li i{
+        margin-left: 10px;
+    }
+    
+    @media (max-width:1023px) {
+        .checks-content{
+            width: 90%;
+        }
+        .div-count-checks{
+            width: 100%;
+        }
+        .number-checks{
+            position: relative;
+            right:-15%;
+        }
+        .div-setting{
+            display: none;
+        }
+    }
+</style>
+</head>
+<body>
+<header class="header1">
+    <a href="{% url 'index' %}"><h1 class="log"><img src="{% static 'image/icon.png' %}" width="45px"><span class="span1">Else<span class="span2">Co</span></h1></a>
+    <nav class="navigation1">
+        <ul class="nav1-option">
+            <!-- <li><a href="{% url 'about' %}">حول <i class="fa-solid fa-address-card"></i></a></li> -->
+            <li><a href="{% url 'posts' %}">المنشورات <i class="fa-solid fa-pen-to-square"></i></a></li>
+            <li><a href="{% url 'checks' %}" style="color:rgb(240, 179, 12)">حجز <i class="fa-solid fa-splotch fa-bounce"></i></a></li>
+            <li><a href="{% url 'zapayn-main' %}">الزبائن <i class="fa-solid fa-arrow-trend-up"></i></a></li>
+            <li><a href="{% url 'store' %}">المتجر <i class="fa-solid fa-store"></i></a></li>
+            <li><a href="{% url 'index' %}">الرئيسية <i class="fa-solid fa-house"></i></a></li>
+            <button onclick="butsetting1()" id="btn-se-1" class="btn-setting"><i class="fa-solid fa-gear"></i></button>
+            <button onclick="butsetting2()" id="btn-se-2" class="off"><i class="fa-solid fa-gear"></i></button>
+        </ul>
+        
+    </nav>
+    <div class="off" id="div-setting">
+        <ul>
+            <li><a href="{% url 'about' %}">حول <i class="fa-solid fa-address-card"></i></a></li>
+            <li><a href="{% url 'offers' %}">عروض <i class="fa-solid fa-fire"></i></a></li>
+        </ul>
+    </div>
+
+    <!-- header script-js -->
+    <script>
+        function butsetting1(){
+            document.getElementById('btn-se-1').className = "off";
+            document.getElementById('btn-se-2').className = "btn-setting";
+            document.getElementById('div-setting').className = "div-setting";
+        }
+        function butsetting2(){
+            document.getElementById('btn-se-2').className = "off";
+            document.getElementById('btn-se-1').className = "btn-setting";
+            document.getElementById('div-setting').className = "off";
+        }
+    </script>
+
+    <!-- more -->
+
+    <nav class="more">
+
+        <input class="checkbox" type="checkbox" id="check">
+        <label for="check">
+        <i class="fa-solid fa-bars" id="btn" onclick="side_on()"></i>
+        <i class="fa-solid fa-times" id="cancel" onclick="side_of()"></i>
+
+    </label>
+        <div class="sidebar" id="sidebar">
+            <header>المزيد</header>
+            
+            <ul>
+                <div>
+                    <h1><img src="{% static 'image/icon.png' %}" width="45px">
+                    <h1>Else<span>Co</span></h1></a>
+                </div>
+                <li><a href="{% url 'index' %}"><i class="fa-sharp fa-solid fa-house-chimney"></i>الرئيسية</a></li>
+                <li><a href="{% url 'checks' %}" style="color:rgb(240, 179, 12);font-weight:bold "><i class="fa-solid fa-splotch fa-bounce"></i>حجز</a></li>
+                <li><a href="{% url 'posts' %}"><i class="fa-solid fa-pen-to-square"></i>المنشورات</a></li>
+                <li><a href="{% url 'store' %}"><i class="fa-solid fa-store"></i>المتجر</a></li>
+                <li><a href="{% url 'zapayn-main' %}"><i class="fa-solid fa-arrow-trend-up"></i>الزبائن</a></li>
+                <li><a href="{% url 'offers' %}"><i class="fa-solid fa-fire"></i>عروض</a></li>
+                <li><a href="{% url 'about' %}"><i class="fa-solid fa-address-card"></i>حول</a></li>
+                <li><a href="https://kareem333j.github.io/KaremM/index.html"><i class="fa-solid fa-code"></i>المبرمج</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    
+
+</header>
+    
+
+    <!-- section -->
+
+    <section class="offers">
+        <div class="offers-header">
+            <h3 dir="rtl" style="font-size: 1.5em;color:#fff;font-weight:bold"><i class="fa-solid fa-circle-exclamation" style="color:orange;margin-left:10px"></i> تفاصيل</h3>
+        </div>
+        {% for i in offer %}
+        <div class="offers-header">
+            <h3 dir="rtl" style="font-size: 1.5em;color:#fff;font-weight:bold"><i class="fa-solid fa-calendar-days" style="color:orange;margin-left:10px"></i> {{i.title}}</h3>
+        </div>
+        <div class="post-content">
+            <div class="post-header" style="margin-bottom: 10px;">
+                {% for x in admin %}
+                <img class="admin-img" src="{{x.image.url}}" width="50px" height="50px" alt="admin-photo">
+                <div class="post-header-content">
+                    <h3>{{x.name|capfirst}}<span style="font-size:1em" class="material-symbols-outlined">
+                        verified
+                        </span></h3>
+                {% endfor %}
+                    <p>{{i.time}}</p>
+                </div>
+            </div>
+            <div class="user-post" dir="ltr" style="margin-bottom: 10px;width:100%;padding:5px 15px 5px 15px">
+                <h2 class="post-text" style="font-size:1.2em; text-align:end;width:100;">{{i.offer}}</h2>
+            </div>
+            
+        </div>
+        <h2 style="color: #fff;margin-bottom:10px"><i class="fa-solid fa-caret-down"></i>السعر</h2>
+        <div class="offers-header">
+            <h3 style="color: orange;font-weight:bold;font-size:1.5em" dir="rtl">{{i.price}} ج</h3>
+        </div>
+        <h2 style="color: #fff;margin-bottom:10px"><i class="fa-solid fa-caret-down"></i> مدة العرض</h2>
+        <div class="offers-header">
+            <h3 style="color: #fff;font-weight:bold;font-size:1.5em">{{i.range_continue}}</h3>
+        </div>
+        {% endfor %}
+        
+    </section>
+
+    <!-- footer -->
+
+    <footer id="footer">
+
+        <div class="footer-date">
+            <div class="loaction">
+                <a href="{% url 'index' %}"><h1 class="log"><img src="{% static 'image/icon.png' %}" width="45px"><span class="span1">Else<span class="span2">Co</span></h1></a>
+                <h3><i class="fa-sharp fa-solid fa-location-dot"></i> KafrElmahmadeya - Mit_ghamr - Egypt</h3>
+                {% for i in admin %}
+                <h3><i class="fa-sharp fa-solid fa-phone"></i>0{{i.phone_num}} </h3>
+                {% endfor %}
+                <h3><i class="fa-solid fa-envelope"></i> Karem147j@gmail.com</h3>
+            </div>
+            <hr class="line-footer-off">
+            <div class="more-date">
+                <h2>المزيد</h2>
+                <a href="{% url 'index' %}"><h3>الصفحة الرئيسية</h3></a>
+                <a href="{% url 'store' %}"><h3>المتجر</h3></a>
+                <a href="{% url 'zapayn-main' %}"><h3>الزبائن</h3></a>
+                <a href="{% url 'posts' %}"><h3>المنشورات</h3></a>
+            </div>
+            <hr class="line-footer-off">
+            <div class="pro-info">
+                <h2>Programmer</h2>
+                <a target="_blank" href="https://kareem333j.github.io/KaremM/index.html"><h3><i class="fa-brands fa-kickstarter"></i>arem Magdy</h3></a>
+                <h3><i class="fa-sharp fa-solid fa-phone"></i>01023681084 </h3>
+                <h3><i class="fa-solid fa-envelope"></i> Kareem147j@gmail.com</h3>
+            </div>
+        </div>
+        <br>
+        <br>
+        <hr>
+        <br>
+        <div class="footer-programmer" style="width:100%; display:flex;justify-content:center;align-items:center;">
+            <h1 style="font-size: 1.3em;width:100%;text-align:center">Powered By: <a href="https://kareem333j.github.io/KaremM/index.html" target="_blank"><span>@Karem Magdy</span></a></h1>
+            <p> 2023 جميع الحقوق محفوظة <i class="fa-sharp fa-solid fa-copyright"></i></p>
+        </div>
+
+    </footer>
+
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Elseco</title>
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+
+    <style>
+        .add-post{
+            width: 80%;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 1px 1px 3px 3px rgba(15, 15, 15, 0.671);
+            background-color: #3E4042;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .add-post a{
+            padding: 10px 20px;
+            width: 85%;
+            background-color: #1E90FF;
+            color: #fff;
+            border: 0;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .offers{
+            width: 100%;
+            min-height: 100vh;
+            background-color: #18191A;
+            padding-top: 7%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        .offers-header{
+            width: 70%;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 1px 1px 3px 3px rgba(15, 15, 15, 0.671);
+            background-color: #3E4042;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .offers-header h3{
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        .offers-header h3 i{
+            color: red;
+        }
+
+        .offer-title{
+            padding: 10px;
+            display: flex;
+            text-align: right;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            flex-direction: column;
+        }
+        .offer-title h3{
+            width: 100%;
+            background: linear-gradient(90deg, #3E4042,  orange);
+            color: #fff;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.5em;
+            padding-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .offer-title a{
+            display: inline-block;
+            width: 100%;
+        }
+        .offer-title span{
+            background-color: orange;
+            display: flex;
+            width: 10px;
+            height: 60px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .div-o{
+            width: 80%;
+            display: flex;
+            align-items: center;
+            background-color: #3E4042;
+            margin-bottom: 10px;
+            flex-direction: column;
+        }
+        .delete{
+            padding: 10px;
+            border: 0;
+            background-color: red;
+            color: #fff;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        
+        @media (max-width:1023px) {
+            .offers{
+                padding-top: 25%;
+            }
+            .offers-header{
+                width: 90%;
+            }
+            .offer-title{
+                width: 100%;
+            }
+            .div-o{
+                width: 90%;
+            }
+        }
+
+        @media (max-width:1023px) {
+            .edit-post form,.add-post,.add-post a{
+                width: 90%;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+    <header class="header1">
+        <a href="{% url 'index' %}"><h1 class="log"><img src="{% static 'image/icon.png' %}" width="45px"><span class="span1">Else<span class="span2">Co</span></h1></a>    
+
+        <!-- more -->
+
+        <nav class="more">
+
+            <input class="checkbox" type="checkbox" id="check">
+            <label for="check">
+            <i class="fa-solid fa-bars" id="btn" onclick="side_on()"></i>
+            <i class="fa-solid fa-times" id="cancel" onclick="side_of()"></i>
+    
+        </label>
+            <div class="sidebar" id="sidebar">
+                <header style="color: orange;font-size:2.6em">تعديل</header>
+                <ul>
+                    <div>
+                        <h1><img src="{% static 'image/icon.png' %}" width="45px">
+                        <h1>Else<span>Co</span></h1></a>
+                    </div>
+                    <li><a href="{% url 'edithome' %}"><i class="fa-sharp fa-solid fa-house-chimney"></i>الرئيسية</a></li>
+                    <li><a href="{% url 'editposts' %}"><i class="fa-solid fa-pen-to-square"></i>المنشورات</a></li>
+                    <li><a href="{% url 'editstore' %}"><i class="fa-solid fa-store"></i>المتجر</a></li>
+                    <li><a href="{% url 'zapayn' %}"><i class="fa-solid fa-arrow-trend-up"></i>الزبائن</a></li>
+                    <li><a href="{% url 'active' %}"><i class="fa-solid fa-circle-dot"></i>حالة المحل</a></li>
+                    <li><a href="{% url 'editchecks' %}"><i class="fa-solid fa-splotch"></i>الحجوزات</a></li>
+                    <li><a href="{% url 'editoffers' %}"><i class="fa-solid fa-fire"></i>العروض</a></li>
+                    <li><a href="{% url 'editadmin' %}"><i class="fa-solid fa-user"></i>الأدمن</a></li>
+                </ul>
+            </div>
+        </nav>
+
+    </header>
+    
+
+    <!-- sections -->
+    <section class="section-home">
+        <div class="admin-side">
+            <h1>صفحة التعديلات</h1>
+            <ul>
+                <li><a href="{% url 'edithome' %}">الرئيسية<i class="fa-sharp fa-solid fa-house-chimney"></i></a></li>
+                <li><a onclick="post_btn()" href="{% url 'editposts' %}">المنشورات<i class="fa-solid fa-pen-to-square"></i></a></li>
+                <li><a onclick="store_btn()" href="{% url 'editstore' %}">المتجر<i class="fa-solid fa-store"></i></a></li>
+                <li><a onclick="zapayn_btn()" href="{% url 'zapayn' %}">الزبائن<i class="fa-solid fa-arrow-trend-up"></i></a></li>
+                <li><a onclick="zapayn_btn()" href="{% url 'active' %}">حالة المحل<i class="fa-solid fa-circle-dot"></i></a></li>
+                <li><a onclick="zapayn_btn()" href="{% url 'editchecks' %}">الحجوزات<i class="fa-solid fa-splotch"></i></a></li>
+                <li><a onclick="zapayn_btn()" href="{% url 'editoffers' %}">العروض<i class="fa-solid fa-fire"></i></a></li>
+                <li><a onclick="admin_btn()" href="{% url 'editadmin' %}">الأدمن<i class="fa-solid fa-user"></i></a></li>
+            </ul>
+        </div>
+        
+
+        <!-- admin-posts -->
+
+        <div class="edit-post" id="admin2">
+            <div class="add-post">
+                <a href="{% url 'addoffer' %}">إضافة عرض</a>
+            </div>
+            {% for i in offer %}
+            <div class="div-o">
+                <div class="offer-title">
+                    <a href="/more-check/{{i.id}}"><h3><span></span> <p>{{i.title}}<i style="margin-left: 10px;" class="fa-solid fa-calendar-days"></i></p></h3></a>
+                </div>
+                <a class="delete" href="/delete-offer/{{i.id}}">حذف</a>
+            </div>
+            {% endfor %}
+    </section>
+    
+
+    <!-- footer -->
+
+
+</body>
+</html>

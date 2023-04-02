@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />    
+    <title>Elseco | Check</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />    
+    <style>
+        .checks-content{
+            padding: 10px;
+            display: flex;
+            text-align: right;
+            justify-content: space-between;
+            align-items: center;
+            width: 70%;
+            flex-direction: column;
+        }
+        .checks-content h3{
+            width: 100%;
+            background: linear-gradient(90deg, #3E4042,  orange);
+            color: #fff;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .checks-content a{
+            display: inline-block;
+            width: 100%;
+        }
+        .checks-content span{
+            background-color: orange;
+            display: flex;
+            width: 10px;
+            height: 60px;
+            border-radius: 0 10px 10px 0;
+        }
+        .post-content{
+            padding: 10px;
+            display: flex;
+            text-align: right;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .checkinnow{
+            padding: 10px;
+            display: flex;
+            display: inline-block;
+            text-align: center;
+            justify-content: space-between;
+            align-items: center;
+            width: 70%;
+            background-color: #1E90FF;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 1.5em;
+            box-shadow: 1px 1px 3px 3px rgba(15, 15, 15, 0.671);
+        }
+
+        
+
+        .no-exist{
+            font-size: 1.5em;
+            color: #fff;
+            padding: 10px;
+            width: 100%;
+            border-radius: 10px;
+            background-color: red;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .number-checks{
+            width: 100%;
+            color:#fff;
+            
+        }
+        .number-checks i{
+            color: orange;
+            margin-left: 5px;
+        }
+        .number-checks span{
+            font-weight: bold;
+            color: orange;
+        }
+
+        @media (max-width:1023px) {
+            .checkinnow{
+                width: 90%;
+            }
+            .number-checks{
+                position: relative;
+                right: -15%;
+            }
+            .checks-content{
+                width: 90%;
+            }
+            .div-count-checks{
+                width: 100%;
+            }
+        }
+    
+        /* settings */
+
+        .btn-setting{
+            margin-left: 50px;
+            background-color: #3E4042;
+            border: 0;
+            cursor: pointer;
+            outline: none;
+        }
+        .btn-setting i{
+            font-size: 1.5em;
+            color: #fff;
+        }
+        
+        .btn-setting i:hover{
+            transform: rotate(90deg);
+            color: orange;
+        }
+        
+        .off{
+            display: none;
+        }
+        
+        .div-setting{
+            position: absolute;
+            top: 72px;
+            right: 100px;
+            width: 200px;
+            min-height: 50px;
+            background-color: #3E4042;
+            box-shadow: 1px 1px 3px 3px #18191A;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .div-setting ul{
+            display: flex;
+            width: 200px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            list-style: none;
+        }
+        
+        .div-setting ul li{
+            width: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .div-setting ul li a{
+            width: 100%;
+            border-bottom: 0.5px solid rgb(36, 35, 35);
+            text-align: end;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            padding: 8px;
+            transition: 0.7s;
+        }
+        
+        .div-setting ul li a:hover{
+            padding-right: 20px;
+            background-color: orange;
+        }
+        
+        .div-setting ul li i{
+            margin-left: 10px;
+        }
+
+        .not-found{
+            display: flex;
+            flex-direction: column;
+            width: 70%;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .not-found h2{
+            font-size: 2em;
+            margin: 30px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+    
+        .not-found i{
+            color: orange;
+        }
+        
+        @media (max-width:1023px) {
+            .checks-content{
+                width: 90%;
+            }
+            .div-count-checks{
+                width: 100%;
+            }
+            .number-checks{
+                position: relative;
+                right:-15%;
+            }
+            .div-setting{
+                display: none;
+            }
+            .not-found h2{
+                font-size: 1.7em;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <header class="header1">
+        <a href="{% url 'index' %}"><h1 class="log"><img src="{% static 'image/icon.png' %}" width="45px"><span class="span1">Else<span class="span2">Co</span></h1></a>
+        <nav class="navigation1">
+            <ul class="nav1-option">
+                <!-- <li><a href="{% url 'about' %}">حول <i class="fa-solid fa-address-card"></i></a></li> -->
+                <li><a href="{% url 'posts' %}">المنشورات <i class="fa-solid fa-pen-to-square"></i></a></li>
+                <li><a href="{% url 'checks' %}" style="color:rgb(240, 179, 12)">حجز <i class="fa-solid fa-splotch fa-bounce"></i></a></li>
+                <li><a href="{% url 'zapayn-main' %}">الزبائن <i class="fa-solid fa-arrow-trend-up"></i></a></li>
+                <li><a href="{% url 'store' %}">المتجر <i class="fa-solid fa-store"></i></a></li>
+                <li><a href="{% url 'index' %}">الرئيسية <i class="fa-solid fa-house"></i></a></li>
+                <button onclick="butsetting1()" id="btn-se-1" class="btn-setting"><i class="fa-solid fa-gear"></i></button>
+                <button onclick="butsetting2()" id="btn-se-2" class="off"><i class="fa-solid fa-gear"></i></button>
+            </ul>
+            
+        </nav>
+        <div class="off" id="div-setting">
+            <ul>
+                <li><a href="{% url 'about' %}">حول <i class="fa-solid fa-address-card"></i></a></li>
+                <li><a href="{% url 'offers' %}">عروض <i class="fa-solid fa-fire"></i></a></li>
+            </ul>
+        </div>
+
+        <!-- header script-js -->
+        <script>
+            function butsetting1(){
+                document.getElementById('btn-se-1').className = "off";
+                document.getElementById('btn-se-2').className = "btn-setting";
+                document.getElementById('div-setting').className = "div-setting";
+            }
+            function butsetting2(){
+                document.getElementById('btn-se-2').className = "off";
+                document.getElementById('btn-se-1').className = "btn-setting";
+                document.getElementById('div-setting').className = "off";
+            }
+        </script>
+
+        <!-- more -->
+
+        <nav class="more">
+
+            <input class="checkbox" type="checkbox" id="check">
+            <label for="check">
+            <i class="fa-solid fa-bars" id="btn" onclick="side_on()"></i>
+            <i class="fa-solid fa-times" id="cancel" onclick="side_of()"></i>
+    
+        </label>
+            <div class="sidebar" id="sidebar">
+                <header>المزيد</header>
+                
+                <ul>
+                    <div>
+                        <h1><img src="{% static 'image/icon.png' %}" width="45px">
+                        <h1>Else<span>Co</span></h1></a>
+                    </div>
+                    <li><a href="{% url 'index' %}"><i class="fa-sharp fa-solid fa-house-chimney"></i>الرئيسية</a></li>
+                    <li><a href="{% url 'checks' %}" style="color:rgb(240, 179, 12);font-weight:bold "><i class="fa-solid fa-splotch fa-bounce"></i>حجز</a></li>
+                    <li><a href="{% url 'posts' %}"><i class="fa-solid fa-pen-to-square"></i>المنشورات</a></li>
+                    <li><a href="{% url 'store' %}"><i class="fa-solid fa-store"></i>المتجر</a></li>
+                    <li><a href="{% url 'zapayn-main' %}"><i class="fa-solid fa-arrow-trend-up"></i>الزبائن</a></li>
+                    <li><a href="{% url 'offers' %}"><i class="fa-solid fa-fire"></i>عروض</a></li>
+                    <li><a href="{% url 'about' %}"><i class="fa-solid fa-address-card"></i>حول</a></li>
+                    <li><a href="https://kareem333j.github.io/KaremM/index.html"><i class="fa-solid fa-code"></i>المبرمج</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        
+
+    </header>
+    
+
+    <!-- sections -->
+    <!-- sections (posts) -->
+
+    <section class="some-posts" id="section1">
+        <!-- post 1 -->
+        <div class="div-post-header">
+            <h3>جميع الحجوزات الأن <i class="fa-solid fa-splotch"></i></h3>
+        </div>
+        <div class="div-count-checks" style="width: 70%; padding:10px;">
+            <h3 class="number-checks" dir="rtl"><i class="fa-solid fa-caret-left fa-fade"></i>عدد الحجوزرات : <span>{{countchecks}}</span></h3>
+        </div>
+        
+        <div class="checks-content">
+            {% for i in checkin %}
+                <a href="/more-check/{{i.id}}"><h3><span></span> {{i.name}}<p>-{{forloop.counter}}</p></h3></a>
+            {% endfor %}
+            <!--  -->
+            {% if countchecks == 0 %}
+            <div class="not-found">
+                <h2>لايوجد حجوزات</h2>
+                <i class="fa-regular fa-folder-open" style="font-size: 7em;"></i>
+            </div>
+            {% endif %}
+        </div>
+        <a class="checkinnow" href="{% url 'checkin' %}">حجز الأن</a>
+
+    </section>
+
+
+    
+
+
+    <!-- footer -->
+
+    <footer id="footer">
+
+        <div class="footer-date">
+            <div class="loaction">
+                <a href="{% url 'index' %}"><h1 class="log"><img src="{% static 'image/icon.png' %}" width="45px"><span class="span1">Else<span class="span2">Co</span></h1></a>
+                <h3><i class="fa-sharp fa-solid fa-location-dot"></i> KafrElmahmadeya - Mit_ghamr - Egypt</h3>
+                {% for i in admin %}
+                <h3><i class="fa-sharp fa-solid fa-phone"></i>0{{i.phone_num}} </h3>
+                {% endfor %}
+                <h3><i class="fa-solid fa-envelope"></i> Karem147j@gmail.com</h3>
+            </div>
+            <hr class="line-footer-off">
+            <div class="more-date">
+                <h2>المزيد</h2>
+                <a href="{% url 'index' %}"><h3>الصفحة الرئيسية</h3></a>
+                <a href="{% url 'store' %}"><h3>المتجر</h3></a>
+                <a href="{% url 'zapayn-main' %}"><h3>الزبائن</h3></a>
+                <a href="{% url 'posts' %}"><h3>المنشورات</h3></a>
+            </div>
+            <hr class="line-footer-off">
+            <div class="pro-info">
+                <h2>Programmer</h2>
+                <a target="_blank" href="https://kareem333j.github.io/KaremM/index.html"><h3><i class="fa-brands fa-kickstarter"></i>arem Magdy</h3></a>
+                <h3><i class="fa-sharp fa-solid fa-phone"></i>01023681084 </h3>
+                <h3><i class="fa-solid fa-envelope"></i> Kareem147j@gmail.com</h3>
+            </div>
+        </div>
+        <br>
+        <br>
+        <hr>
+        <br>
+        <div class="footer-programmer" style="width:100%; display:flex;justify-content:center;align-items:center;">
+            <h1 style="font-size: 1.3em;width:100%;text-align:center">Powered By: <a href="https://kareem333j.github.io/KaremM/index.html" target="_blank"><span>@Karem Magdy</span></a></h1>
+            <p> 2023 جميع الحقوق محفوظة <i class="fa-sharp fa-solid fa-copyright"></i></p>
+        </div>
+
+    </footer>
+
+</body>
+</html>

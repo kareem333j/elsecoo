@@ -1,0 +1,13 @@
+{% extends 'karem/start-admin.html' %}
+{% include 'karem/start-admin.html' %}
+{% block content %}
+
+<section>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="activate">
+        <input type="number" name="num-zapayn">
+        <input class="btn" type="submit" value="Save">
+    </form>
+</section>
+{% endblock content %}

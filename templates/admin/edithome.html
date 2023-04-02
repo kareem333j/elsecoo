@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <title>Elseco</title>
+        <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    </head>
+    <body>
+        <header class="header1">
+            <a href="{% url 'index' %}"><h1 class="log"><img src="{% static 'image/icon.png' %}" width="45px"><span class="span1">Else<span class="span2">Co</span></h1></a>    
+    
+            <!-- more -->
+    
+            <nav class="more">
+    
+                <input class="checkbox" type="checkbox" id="check">
+                <label for="check">
+                <i class="fa-solid fa-bars" id="btn" onclick="side_on()"></i>
+                <i class="fa-solid fa-times" id="cancel" onclick="side_of()"></i>
+        
+            </label>
+                <div class="sidebar" id="sidebar">
+                    <header style="color: orange;font-size:2.6em">تعديل</header>
+                    <ul>
+                        <div>
+                            <h1><img src="{% static 'image/icon.png' %}" width="45px">
+                            <h1>Else<span>Co</span></h1></a>
+                        </div>
+                        <li><a href="{% url 'edithome' %}"><i class="fa-sharp fa-solid fa-house-chimney"></i>الرئيسية</a></li>
+                        <li><a href="{% url 'editposts' %}"><i class="fa-solid fa-pen-to-square"></i>المنشورات</a></li>
+                        <li><a href="{% url 'editstore' %}"><i class="fa-solid fa-store"></i>المتجر</a></li>
+                        <li><a href="{% url 'zapayn' %}"><i class="fa-solid fa-arrow-trend-up"></i>الزبائن</a></li>
+                        <li><a href="{% url 'active' %}"><i class="fa-solid fa-circle-dot"></i>حالة المحل</a></li>
+                        <li><a href="{% url 'editchecks' %}"><i class="fa-solid fa-splotch"></i>الحجوزات</a></li>
+                        <li><a href="{% url 'editoffers' %}"><i class="fa-solid fa-fire"></i>العروض</a></li>
+                        <li><a href="{% url 'editadmin' %}"><i class="fa-solid fa-user"></i>الأدمن</a></li>
+                    </ul>
+                </div>
+            </nav>
+    
+        </header>
+        
+    
+        <!-- sections -->
+        <section class="section-home">
+            <div class="admin-side">
+                <h1>صفحة التعديلات</h1>
+                <ul>
+                    <li><a href="{% url 'edithome' %}">الرئيسية<i class="fa-sharp fa-solid fa-house-chimney"></i></a></li>
+                    <li><a onclick="post_btn()" href="{% url 'editposts' %}">المنشورات<i class="fa-solid fa-pen-to-square"></i></a></li>
+                    <li><a onclick="store_btn()" href="{% url 'editstore' %}">المتجر<i class="fa-solid fa-store"></i></a></li>
+                    <li><a onclick="zapayn_btn()" href="{% url 'zapayn' %}">الزبائن<i class="fa-solid fa-arrow-trend-up"></i></a></li>
+                    <li><a onclick="zapayn_btn()" href="{% url 'active' %}">حالة المحل<i class="fa-solid fa-circle-dot"></i></a></li>
+                    <li><a onclick="zapayn_btn()" href="{% url 'editchecks' %}">الحجوزات<i class="fa-solid fa-splotch"></i></a></li>
+                    <li><a onclick="zapayn_btn()" href="{% url 'editoffers' %}">العروض<i class="fa-solid fa-fire"></i></a></li>
+                    <li><a onclick="admin_btn()" href="{% url 'editadmin' %}">الأدمن<i class="fa-solid fa-user"></i></a></li>
+                </ul>
+            </div>
+        <!-- admin welcom -->
+        <div class="admin-tool" id="admin1">
+            <h1 class="admin-phone-header">صفحة التعديلات</h1>
+            <h1>
+                مرحبا بكم في صفحة الأدمن
+            </h1>
+            <div class="admin-welcom">
+                <h2> <span>لاحظ :</span> هذه الصفحة مسؤلة عن التحكم في كل شئ في الموقع <br><span>برجاء :</span>  التركيز عند تحديث اي شئ حتي لايؤدي الي تدمير الموقع</h2>
+            </div>
+            <div class="admin-using">
+                <h2>طريقة الإدارة</h2>
+                <h3>قم بالذهاب الي الشريط الجانبي علي الجهة اليمني</h3>
+                <h3>قم بإختيار اي سكشن تريد التعديل عليه</h3>
+                <h3>قم بالتعديل علي البيانات ولاكن علي حسب التعليمات أدناها</h3>
+            </div>
+        </div>
+
+        <!-- admin-posts -->
+
+        <div class="off" id="admin2">
+            <form>
+                <input id="search-in" type="search" class="search" name="search-post" placeholder="...ابحث عن منشور">
+                <!-- <input class="search-btn" type="submit" value="Search"> -->
+                <button onclick="search_btn()" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+            <hr style="margin:auto; width:60%; color:orange; margin-bottom:10px">
+            <div class="post-result">
+                <h3 id="h3-result"></h3>
+
+
+                <!-- posts -->
+            <div class="posts" id="admin3">
+                <div class="post-content">
+                    <div class="post-header">
+                        <img src="../image/user.png" width="50px" alt="admin-photo">
+                        <div class="post-header-content">
+                            <h3>User Name</h3>
+                            <p>3.45 pm</p>
+                        </div>
+                    </div>
+                    <div class="user-post">
+                        <h2>في شغل جديد نازل يرجالة
+                            <br>
+                            إنشاء الله هينزل بكر
+                            ❤️
+                        </h2>
+                        <a href="#" class="edit">تعديل</a>
+                        <button class="remove">حذف</button>
+                    </div>
+                </div>
+                <!-- post 2 -->
+        
+                <div class="post-content">
+                    <div class="post-header">
+                        <img src="../image/user.png" width="50px" alt="admin-photo">
+                        <div class="post-header-content">
+                            <h3>User Name</h3>
+                            <p>3.45 pm</p>
+                        </div>
+                    </div>
+                    <div class="user-post">
+                        <h2>في شغل جديد نازل يرجالة</h2>
+                        <a href="#" class="edit">تعديل</a>
+                        <button class="remove">حذف</button>
+                    </div>
+                </div>
+                <!-- post 3 -->
+        
+                <div class="post-content">
+                    <div class="post-header">
+                        <img src="../image/user.png" width="50px" alt="admin-photo">
+                        <div class="post-header-content">
+                            <h3>User Name</h3>
+                            <p>3.45 pm</p>
+                        </div>
+                    </div>
+                    <div class="user-post">
+                        <h2>في شغل جديد نازل يرجالة</h2>
+                        <a href="#" class="edit">تعديل</a>
+                        <button class="remove">حذف</button>
+                    </div>
+                </div>
+        
+                <!-- post 4 -->
+        
+                <div class="post-content">
+                    <div class="post-header">
+                        <img src="../image/user.png" width="50px" alt="admin-photo">
+                        <div class="post-header-content">
+                            <h3>User Name</h3>
+                            <p>3.45 pm</p>
+                        </div>
+                    </div>
+                    <div class="user-post">
+                        <h2>انتظرو فيديو جامد الساعة 11 بليل <br> ضرب نار</h2>
+                        <a href="#" class="edit">تعديل</a>
+                        <button class="remove">حذف</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- edit store -->
+        <div class="off" id="admin4">
+
+        </div>
+
+    </section>
+    
+
+
+    
+
+
+    <!-- footer -->
+
+</body>
+</html>
